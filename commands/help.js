@@ -5,10 +5,10 @@ const path = require('path');
 async function helpCommand(sock, chatId, channelLink) {
     const helpMessage = `
 ╔═══════════════════╗
-   *🤖 ${settings.botName || 'KnightBot-MD'}*  
+   *🤖 ${settings.botName || '🎀HUSSAIN-XT'🎀}*  
    Version: *${settings.version || '1.0.0'}*
-   by ${settings.botOwner || 'Mr Unique Hacker'}
-   YT : ${global.ytch}
+   by ${settings.botOwner || 'Mr Hussain XT🎰🏖️'}
+   Admin number: +8801965142856
 ╚═══════════════════╝
 
 *Available Commands:*
@@ -148,8 +148,8 @@ Join our channel for updates:`;
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD by Mr Unique Hacker',
+                        newsletterJid: '',
+                        newsletterName: 'Hussain XT by Mr Hussain',
                         serverMessageId: -1
                     }
                 }
@@ -162,8 +162,8 @@ Join our channel for updates:`;
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD by Mr Unique Hacker',
+                        newsletterJid: '',
+                        newsletterName: 'Hussain XT by Mr Hussain',
                         serverMessageId: -1
                     } 
                 }
