@@ -64,8 +64,8 @@
 
 ## 👑 Owner Information
 
-- Owner Name: 𝐒𝐔𝐌𝐎𝐍 .𝐗. **𝐒𝐀𝐌𝐈𝐍**
-- 
+- Owner Name: 𝐒𝐔𝐌𝐎𝐍 .𝐗. 𝐒𝐀𝐌𝐈𝐍
+
 -1 WhatsApp: [📞 Click Here](https://wa.me/917003816486)
   
 -2 WhatsApp: [📞 Click Here](https://wa.me/918348672970)
