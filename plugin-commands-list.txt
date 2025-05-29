@@ -1,0 +1,110 @@
+
+# Plugin Commands List
+
+## All Patterns and Aliases from Plugins Folder
+
+### Main Commands
+- **alive2**: `alive2` (Check bot online status)
+- **version**: `version`, `changelog`, `cupdate`, `checkupdate` (Check bot version and updates)
+- **recentplugins**: `recentplugins`, `recentplugs`, `newplugins`, `whatsnew` (List recently updated plugins)
+- **menu2**: `menu2` (Get command list)
+- **updatecmd**: `updatecmd` (Update commands - owner only)
+
+### Sticker Commands
+- **take**: `take`, `rename`, `stake` (Create sticker with custom pack name)
+- **sticker**: `sticker`, `s`, `stickergif` (Create sticker from image/video)
+- **stickersearch**: `stickersearch`, `stsearch`, `sticksearch` (Search and fetch stickers)
+
+### Anti-Delete & Privacy
+- **antilink**: Various link detection patterns (WhatsApp, Telegram, Social Media)
+- Anti-delete functionality in `antidel.js` (Detects and logs deleted messages)
+
+### Utility & Tools
+- **cmdupdate**: `updatecmd` (Reload command modules)
+- **privacy**: Privacy management commands
+
+### Image Processing
+- **img-nokia**: Nokia-style image effects
+- **img-blur**: Image blur effects
+- **img-grey**: Grayscale image conversion
+- **img-invert**: Image color inversion
+- **img-jail**: Jail overlay effects
+- **img-wanted**: Wanted poster effects
+- **img-rmbg**: Background removal
+- **img-ade**: Image enhancement effects
+
+### Fun & Entertainment
+- **emotions-tool**: Emotion-based responses and animations
+- **anime**: Anime-related commands
+- **animegirl**: Anime girl images
+- **couplepp**: Couple profile pictures
+- **dog**: Dog images/videos
+- **quote**: Quote generation
+- **random-anime**: Random anime content
+
+### Download Commands
+- **dl-tiktok**: TikTok video download
+- **fb-dl**: Facebook video download
+- **insta-dl**: Instagram content download
+- **download**: General download commands
+- **spotify**: Spotify music download
+
+### Group Management
+- **group-setting**: Group configuration
+- **group-tag**: Group member tagging
+- **group-tool**: Group utility tools
+- **kick**: Kick members
+- **kick-country**: Kick by country code
+- **tadmin**: Temporary admin commands
+
+### System & Owner
+- **eval**: Code evaluation (owner only)
+- **restart**: Bot restart
+- **ping**: Bot response time
+- **system**: System information
+- **presence**: Bot presence management
+- **always-online**: Keep bot online
+
+### Search & Information
+- **search**: General search functionality
+- **gitstalk**: GitHub profile stalking
+- **npm-search**: NPM package search
+- **movie**: Movie information
+- **lyrics**: Song lyrics search
+- **define**: Word definitions
+
+### Conversion & Tools
+- **convertr**: File conversion
+- **font-txt**: Text font styling
+- **qr-generator**: QR code generation
+- **screenshot**: Website screenshots
+- **currency**: Currency conversion
+
+### Media & Content
+- **media**: Media handling
+- **save**: Save content
+- **tgs**: Telegram sticker handling
+- **tempmail**: Temporary email generation
+
+### Miscellaneous
+- **misc**: Miscellaneous commands
+- **function**: Function utilities
+- **game**: Gaming commands
+- **hack**: Hacking simulation commands
+- **rank**: User ranking system
+- **reactions**: Reaction management
+- **script**: Script execution
+
+### Configuration
+- **env-list**: Environment variables listing
+- **mng-enabled**: Manage enabled features
+- **opentime-closetime**: Group timing management
+- **pair**: Device pairing
+- **check-code**: Code verification
+- **check-online**: Online status checking
+
+## Notes:
+- Most commands require specific permissions (owner, admin, etc.)
+- Some commands are group-specific or DM-specific
+- React emojis are assigned to most commands
+- Categories include: main, sticker, owner, group, download, convert, search, fun, utility, info

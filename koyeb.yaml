@@ -1,0 +1,17 @@
+name: kaisen-md
+services:
+  - name: kaisen-md-service
+    type: web
+    ports:
+      - 5000
+    routes:
+      - path: "/"
+    build:
+      type: docker
+      dockerfile: ./Dockerfile
+    regions:
+      - fra
+      - sin
+      
+
+
