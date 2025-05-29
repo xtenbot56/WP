@@ -66,9 +66,13 @@
 
 - Owner Name: 𝐒𝐔𝐌𝐎𝐍 a.k.a **𝐒𝐀𝐌𝐈𝐍**
 -1 WhatsApp: [📞 Click Here](https://wa.me/918348672970)
+  
 -2 WhatsApp: [📞 Click Here](https://wa.me/917003816486)
+
 -1 GitHub: [𝐒𝐔𝐌𝐎𝐍9836](https://github.com/sumon9836)
--2 GitHub: [𝐒𝐀𝐌𝐈𝐍123123](https://github.com/sumon9836)
+
+-2 GitHub: [𝐒𝐀𝐌𝐈𝐍123123](https://github.com/Samin123123)
+
 - Main Bot Repo: [𝗞ą𝗂𝗌𝖾𝗇-𝗠𝗗](https://github.com/sumon9836/KAISEN-MD)
 
 ---
