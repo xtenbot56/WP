@@ -2,7 +2,17 @@
   𝗞ą𝗂𝗌𝖾𝗇-𝗠𝗗 🌟
 </h1>
 <p align="center">
-  A Powerful, Stylish, and Royal WhatsApp Multi-Device Bot with Full-Featured Panel & Deployment Options.
+  A Royal Multi-Device WhatsApp Bot with Music, Auto Features, Powerful Control Panel, and Stylish UI 🌈
+</p>
+
+---
+
+## 🌐 Pair Your WhatsApp Bot
+
+<p align="center">
+  <a href="https://kaisen-md-pair.onrender.com" target="_blank">
+    <img src="https://img.shields.io/badge/CLICK_TO_PAIR-𝗞ą𝗂𝗌𝖾𝗇𝗠𝗗%20🔗-0abf53?style=for-the-badge&logo=whatsapp" alt="Pair Now">
+  </a>
 </p>
 
 ---
@@ -26,29 +36,29 @@
 
 ## ✨ Features
 
-- Full Multi-Device WhatsApp Bot
-- Stylish Royal UI Design
-- Auto Reaction / Auto Welcome / Auto Status View
-- Music System (YouTube, Audio, Video)
-- Group Tagging, Mention Song
-- Custom Prefix, Command & Profile System
-- Sticker Maker, Photo Editor, Video Convert
-- Owner Commands, Menu Customizer
-- Full Panel Integration (Coming Soon)
+- 🌐 WhatsApp Multi-Device Support
+- 🎶 YouTube Music/Video Downloader
+- 🎭 Sticker Maker, Photo Editor, Converter
+- 🔁 Auto Reaction, Auto Status View, Welcome/Goodbye
+- 🎧 Mention Song & Tag Features
+- 💬 Group Command System
+- 👑 Owner & Admin Special Controls
+- ⚙️ Custom Prefix / Profile Setup
+- 🧩 Full Custom Panel Access (Coming Soon)
 
 ---
 
-## 🧠 Panel Access (Soon)
+## 📲 Panel & Device Control
 
-🚧 Coming Soon: A full-featured Panel system to manage:
-- Your Bot Logs
-- Link Devices via Web
-- Manage Sections (Add/Remove Users)
-- Send Commands via Panel
-- 🔐 Secure Admin Area
+> 🔗 Link Device Easily from Web  
+> ⚙️ Manage Commands from Panel  
+> 🔐 Secure Admin Dashboard  
+> 🧩 Add or Remove Section Access  
+> 📦 Logs, Info, Media Access & More  
 
-> 👑 Panel Link: **Coming Soon**  
-> 🧩 Section API: **Already Connected**
+👉 **Panel Link:** Coming Soon  
+🔑 **Section Link API:** Already integrated  
+📟 **Pairing Status:** Real-Time Sync
 
 ---
 
