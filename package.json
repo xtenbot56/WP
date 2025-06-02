@@ -1,5 +1,5 @@
 {
-  "name": "KAISEN-MD",
+  "name": "kaisen-md",
   "version": "1.0.0",
   "description": "A WhatsApp Bot Created By KAISEN",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "@mrnima/tiktok-downloader": "1.0.0",
     "@neeraj-x0/textpro": "^1.0.3",
     "@vitalets/google-translate-api": "^9.2.0",
-    "@whiskeysockets/baileys": "6.7.9",
+    "@whiskeysockets/baileys": "^6.7.18",
     "adm-zip": "^0.4.16",
     "api-dylux": "1.8.5",
     "archiver": "^5.3.1",
@@ -75,5 +75,11 @@
     "wa_set_pkg": "1.0.5",
     "wa-sticker-formatter": "^4.4.4",
     "yt-search": "2.11.1"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
