@@ -18,7 +18,7 @@
     "@mrnima/tiktok-downloader": "1.0.0",
     "@neeraj-x0/textpro": "^1.0.3",
     "@vitalets/google-translate-api": "^9.2.0",
-    "@whiskeysockets/baileys": "^6.7.18",
+    "@whiskeysockets/baileys": "^6.7.17",
     "adm-zip": "^0.4.16",
     "api-dylux": "1.8.5",
     "archiver": "^5.3.1",
