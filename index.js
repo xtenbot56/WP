@@ -122,9 +122,16 @@ const port = process.env.PORT || 9090;
   conn.ev.on('connection.update', (update) => {
   const { connection, lastDisconnect } = update
   if (connection === 'close') {
-  if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
-  connectToWA()
-  }
+ if (
+    lastDisconnect &&
+    lastDisconnect.error &&
+    lastDisconnect.error.output &&
+    typeof lastDisconnect.error.output.statusCode !== 'undefined'
+) {
+    if (lastDisconnect.error.output.statusCode === DisconnectReason.loggedOut) {
+        connectToWA();
+    }
+}
   } else if (connection === 'open') {
   console.log('🧬 Installing Plugins')
   const path = require('path');
@@ -147,7 +154,6 @@ const port = process.env.PORT || 9090;
 *┃👀 𝐎𝐍𝐋𝐈𝐍𝐄      : ${online}*
 *┃👻 𝐏𝐑𝐄𝐅𝐈𝐗        : ${prefix}*
 *┃🔮 𝐌𝐎𝐃𝐄        : ${mode}*
-*┃🍉 𝐒𝐓𝐀𝐓𝐔𝐒       : ${status}*
 *┃🌩️ 𝐕𝐄𝐑𝐒𝐈𝐎𝐍      : 𝟏.𝟎.𝟎*
  ╰━━━━━━━━━━━━━━━━━━╯
 
