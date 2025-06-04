@@ -68,43 +68,22 @@ const {
   
   //===================SESSION-AUTH============================
 
-const credsPath = path.join(__dirname, 'sessions', 'creds.json');
-async function downloadSession() {
-  if (fs.existsSync(credsPath)) return;
-  if (!config.SESSION_ID) {
-    console.log('❌ Add your session to env & config.js');
-    process.exit(1);
-  }
-  try {
-    const megaId = config.SESSION_ID.replace('KAISEN~', '');
-    const file = File.fromURL(`https://mega.nz/file/${megaId}`);
-
-    console.log('📥 Session download...');
-
-    const data = await new Promise((resolve, reject) => {
-      file.download((err, data) => {
-        if (err) return reject(err);
-        resolve(data);
-      });
-    });
-    const sessionsDir = path.join(__dirname, 'sessions');
-    if (!fs.existsSync(sessionsDir)) {
-      fs.mkdirSync(sessionsDir);
-    }
-    await fs.promises.writeFile(credsPath, data);
-    console.log('✅ Session downloaded');
-  } catch (err) {
-    console.error('❌ Session download error:', err.message || err);
-    process.exit(1);
-  }
-}
-downloadSession();
+if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
+if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
+const sessdata = config.SESSION_ID.replace("STARK-ALI~", '');
+const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
+filer.download((err, data) => {
+if(err) throw err
+fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
+console.log("Session downloaded ✅")
+})})}
 
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 9090;
   
   //=============================================
+  
   async function connectToWA() {
   console.log("Connecting to WhatsApp ⏳️...");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/')
@@ -122,18 +101,12 @@ const port = process.env.PORT || 9090;
   conn.ev.on('connection.update', (update) => {
   const { connection, lastDisconnect } = update
   if (connection === 'close') {
- if (
-    lastDisconnect &&
-    lastDisconnect.error &&
-    lastDisconnect.error.output &&
-    typeof lastDisconnect.error.output.statusCode !== 'undefined'
-) {
-    if (lastDisconnect.error.output.statusCode === DisconnectReason.loggedOut) {
-        connectToWA();
-    }
-}
+  if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
+  connectToWA()
+  }
   } else if (connection === 'open') {
   console.log('🧬 Installing Plugins')
+  console.log('Bot connected to whatsapp ✅')
   const path = require('path');
   fs.readdirSync("./plugins/").forEach((plugin) => {
   if (path.extname(plugin).toLowerCase() == ".js") {
@@ -144,11 +117,6 @@ const port = process.env.PORT || 9090;
   console.log('Bot connected to whatsapp ✅')
   
   let up = `
-  ╔═════⟪✦⟫═════╗ 
- *✨𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎✨*
-  *𝗞ą𝗂𝗌𝖾𝗇-𝗠𝗗』 ʙᴏᴛ* 
-  ╚═════⟪✦⟫═════╝
-
 *╭━━━〔🍓𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗨𝗦〕━━━✦*
 *┃✅ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 : ᴀᴄᴛɪᴠᴇ*
 *┃👀 𝐎𝐍𝐋𝐈𝐍𝐄      : ${online}*
@@ -165,12 +133,10 @@ const port = process.env.PORT || 9090;
 *✦ 𝗘𝗡𝗚𝗜𝗡𝗘      : 𝐊ą𝐢𝐬𝐞𝐧-𝐌𝐃
 *✦ 𝗚𝗜𝗧𝗛𝗨𝗕*     : [🔗 https://github.com/sumon9836/KAISEN-MD.git]
 *✦ 𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 : ꜱᴜᴍᴏɴ × ꜱᴀᴍɪɴ*
-`;
-    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/hwl3d4.jpg` }, caption: up })
+`;    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/hwl3d4.jpg` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)
-
   //==============================
 
   conn.ev.on('messages.update', async updates => {
