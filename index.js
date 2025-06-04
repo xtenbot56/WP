@@ -29,7 +29,6 @@ const {
   const ff = require('fluent-ffmpeg')
   const P = require('pino')
   const config = require('./config')
-  const GroupEvents = require('./lib/groupevents');
   const qrcode = require('qrcode-terminal')
   const StickersTypes = require('wa-sticker-formatter')
   const util = require('util')
@@ -44,10 +43,10 @@ const {
   const path = require('path')
   const prefix = config.PREFIX
   const mode = config.MODE
-  const online = config.ALWAYS_ONLINE
-  const status = config.AUTO_STATUS_SEEN
   const ownerNumber = ['917003816486']
-  
+  const online = config.ALWAYS_ONLINE
+
+
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
       fs.mkdirSync(tempDir)
@@ -67,16 +66,39 @@ const {
   // Clear the temp directory every 5 minutes
   setInterval(clearTempDir, 5 * 60 * 1000);
   
-  //===================SESSION-AUTH============================c
-if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-const sessdata = config.SESSION_ID.replace("KAISEN~", '');
-const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-filer.download((err, data) => {
-if(err) throw err
-fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-console.log("Session downloaded ✅")
-})})}
+  //===================SESSION-AUTH============================
+
+const credsPath = path.join(__dirname, 'sessions', 'creds.json');
+async function downloadSession() {
+  if (fs.existsSync(credsPath)) return;
+  if (!config.SESSION_ID) {
+    console.log('❌ Add your session to env & config.js');
+    process.exit(1);
+  }
+  try {
+    const megaId = config.SESSION_ID.replace('KAISEN~', '');
+    const file = File.fromURL(`https://mega.nz/file/${megaId}`);
+
+    console.log('📥 Session download...');
+
+    const data = await new Promise((resolve, reject) => {
+      file.download((err, data) => {
+        if (err) return reject(err);
+        resolve(data);
+      });
+    });
+    const sessionsDir = path.join(__dirname, 'sessions');
+    if (!fs.existsSync(sessionsDir)) {
+      fs.mkdirSync(sessionsDir);
+    }
+    await fs.promises.writeFile(credsPath, data);
+    console.log('✅ Session downloaded');
+  } catch (err) {
+    console.error('❌ Session download error:', err.message || err);
+    process.exit(1);
+  }
+}
+downloadSession();
 
 const express = require("express");
 const app = express();
@@ -114,19 +136,13 @@ const port = process.env.PORT || 9090;
   });
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
-  
+    
   let up = `
-  ╔═════⟪✦⟫═════╗ 
- *✨𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎✨*
-  *𝗞ą𝗂𝗌𝖾𝗇-𝗠𝗗』 ʙᴏᴛ* 
-  ╚═════⟪✦⟫═════╝
-
 *╭━━━〔🍓𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗨𝗦〕━━━✦*
 *┃✅ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 : ᴀᴄᴛɪᴠᴇ*
 *┃👀 𝐎𝐍𝐋𝐈𝐍𝐄      : ${online}*
 *┃👻 𝐏𝐑𝐄𝐅𝐈𝐗        : ${prefix}*
 *┃🔮 𝐌𝐎𝐃𝐄        : ${mode}*
-*┃🍉 𝐒𝐓𝐀𝐓𝐔𝐒       : ${status}*
 *┃🌩️ 𝐕𝐄𝐑𝐒𝐈𝐎𝐍      : 𝟏.𝟎.𝟎*
  ╰━━━━━━━━━━━━━━━━━━╯
 
@@ -154,102 +170,6 @@ const port = process.env.PORT || 9090;
       }
     }
   });
-  //============================== 
-
-  conn.ev.on("group-participants.update", (update) => GroupEvents(conn, update));	  
-  // ============================== 
-  const sendNoPrefix = async (client, message) => {
-  try {
-    if (!message.quoted) {
-      return await client.sendMessage(message.chat, {
-        text: "*🍁 Please reply to a message!*"
-      }, { quoted: message });
-    }
-
-    const buffer = await message.quoted.download();
-    const mtype = message.quoted.mtype;
-    const options = { quoted: message };
-
-    let messageContent = {};
-    switch (mtype) {
-      case "imageMessage":
-        messageContent = {
-          image: buffer,
-          caption: message.quoted.text || '',
-          mimetype: message.quoted.mimetype || "image/jpeg"
-        };
-        break;
-      case "videoMessage":
-        messageContent = {
-          video: buffer,
-          caption: message.quoted.text || '',
-          mimetype: message.quoted.mimetype || "video/mp4"
-        };
-        break;
-      case "audioMessage":
-        messageContent = {
-          audio: buffer,
-          mimetype: "audio/mp4",
-          ptt: message.quoted.ptt || false
-        };
-        break;
-      default:
-        return await client.sendMessage(message.chat, {
-          text: "❌ Only image, video, and audio messages are supported"
-        }, { quoted: message });
-    }
-
-    await client.sendMessage(message.chat, messageContent, options);
-  } catch (error) {
-    console.error("No Prefix Send Error:", error);
-    await client.sendMessage(message.chat, {
-      text: "❌ Error forwarding message:\n" + error.message
-    }, { quoted: message });
-  }
-};
-
-// === BINA PREFIX COMMAND (send/sendme/stsend) ===
-conn.ev.on('messages.upsert', async (msg) => {
-  try {
-    const m = msg.messages[0];
-    if (!m.message || m.key.fromMe || m.key.participant === conn.user.id) return;
-
-    const text = m.message?.conversation || m.message?.extendedTextMessage?.text;
-    const from = m.key.remoteJid;
-    if (!text) return;
-
-    const command = text.toLowerCase().trim();
-    const targetCommands = ["send", "sendme", "sand"];
-    if (!targetCommands.includes(command)) return;
-
-    const quoted = m.message?.extendedTextMessage?.contextInfo?.quotedMessage;
-    if (!quoted) {
-      await conn.sendMessage(from, { text: "*🥷 Please reply to a message!*" }, { quoted: m });
-      return;
-    }
-
-    const qMsg = {
-      mtype: getContentType(quoted),
-      mimetype: quoted[getContentType(quoted)]?.mimetype,
-      text: quoted[getContentType(quoted)]?.caption || quoted[getContentType(quoted)]?.text || '',
-      ptt: quoted[getContentType(quoted)]?.ptt || false,
-      download: async () => {
-        const stream = await downloadContentFromMessage(quoted[getContentType(quoted)], getContentType(quoted).replace("Message", ""));
-        let buffer = Buffer.from([]);
-        for await (const chunk of stream) buffer = Buffer.concat([buffer, chunk]);
-        return buffer;
-      }
-    };
-
-    m.chat = from;
-    m.quoted = qMsg;
-
-    await sendNoPrefix(conn, m);
-  } catch (err) {
-    console.error("No Prefix Handler Error:", err);
-  }
-});
-          	  
   //=============readstatus=======
         
   conn.ev.on('messages.upsert', async(mek) => {
@@ -269,15 +189,15 @@ conn.ev.on('messages.upsert', async (msg) => {
       await conn.readMessages([mek.key])
     }
   if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_REACT === "true"){
-    const jawadlike = await conn.decodeJid(conn.user.id);
-    const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🙆', '🚩', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡', '😁', '😄', '🌸', '🕊️', '🌷', '⛅', '🌟', '🗿', '🇵🇰', '💜', '💙', '🌝', '🖤', '🎎', '🎏', '🎐', '⚽', '🧣', '🌿', '⛈️', '🌦️', '🌚', '🌝', '🙈', '🙉', '🦖', '🐤', '🎗️', '🥇', '👾', '🔫', '🐝', '🦋', '🍓', '🍫', '🍭', '🧁', '🧃', '🍿', '🍻', '🎀', '🧸', '👑', '〽️', '😳', '💀', '☠️', '👻', '🔥', '♥️', '👀', '🐼'];
+    const sumonlike = await conn.decodeJid(conn.user.id);
+    const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🙆', '🚩', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡', '😁', '😄', '🌸', '🕊️', '🌷', '⛅', '🌟', '🗿', '🇵🇰', '💜', '💙', '🌝', '🖤', '💚'];
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
     await conn.sendMessage(mek.key.remoteJid, {
       react: {
         text: randomEmoji,
         key: mek.key,
       } 
-    }, { statusJidList: [mek.key.participant, jawadlike] });
+    }, { statusJidList: [mek.key.participant, sumonlike] });
   }                       
   if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_REPLY === "true"){
   const user = mek.key.participant
@@ -318,16 +238,16 @@ conn.ev.on('messages.upsert', async (msg) => {
   conn.sendMessage(from, { text: teks }, { quoted: mek })
   }
   const udp = botNumber.split('@')[0];
-    const jawad = ('917003816486');
-    let isCreator = [udp, jawad, config.DEV]
+    const sumon = ('917003816486');
+    let isCreator = [udp, sumon, config.DEV]
 					.map(v => v.replace(/[^0-9]/g) + '@s.whatsapp.net')
 					.includes(mek.sender);
 
-    if (isCreator && mek.text.startsWith('<')) {
+    if (isCreator && mek.text.startsWith('%')) {
 					let code = budy.slice(2);
 					if (!code) {
 						reply(
-							`undefined`,
+							`Provide me with a query to run Master!`,
 						);
 						return;
 					}
@@ -366,7 +286,7 @@ conn.ev.on('messages.upsert', async (msg) => {
  //================ownerreact==============
     
 if (senderNumber.includes("917003816486") && !isReact) {
-  const reactions = ["👑", "🫜", "🫆", "🫩", "🪾", "🪉", "🪏", "🫟"];
+  const reactions = ["👑", "💀", "📊", "⚙️", "🧠", "🎯", "📈", "📝", "🏆", "🌍", "🇵🇰", "💗", "❤️", "💥", "🌼", "🏵️", ,"💐", "🔥", "❄️", "🌝", "🌚", "🐥", "🧊"];
   const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];
   m.react(randomReaction);
 }
@@ -390,7 +310,7 @@ if (!isReact && config.AUTO_REACT === 'true') {
         '📑', '📉', '📂', '🔖', '🧷', '📌', '📝', '🔏', '🔐', '🩷', '❤️', '🧡', '💛', '💚', 
         '🩵', '💙', '💜', '🖤', '🩶', '🤍', '🤎', '❤‍🔥', '❤‍🩹', '💗', '💖', '💘', '💝', '❌', 
         '✅', '🔰', '〽️', '🌐', '🌀', '⤴️', '⤵️', '🔴', '🟢', '🟡', '🟠', '🔵', '🟣', '⚫', 
-        '⚪', '🟤', '🔇', '🔊', '📢', '🔕', '♥️', '🕐', '🚩', '🇵🇰', '🧳', '🌉', '🌁', '🛤️', '🛣️', '🏚️', '🏠', '🏡', '🧀', '🍥', '🍮', '🍰', '🍦', '🍨', '🍧', '🥠', '🍡', '🧂', '🍯', '🍪', '🍩', '🍭', '🥮', '🍡'
+        '⚪', '🟤', '🔇', '🔊', '📢', '🔕', '♥️', '🕐', '🚩', '🇵🇰'
     ];
 
     const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];

@@ -49,7 +49,7 @@ async (conn, mek, m, { from, reply }) => {
 
 \`📡 𝐁𝐎𝐓 𝐒𝐔𝐏𝐏𝐎𝐑𝐓 𝐆𝐂:\`💀👇
 
-> https://chat.whatsapp.com/Ja7bWhgrFkc3V67yBjchM2
+> https://chat.whatsapp.com/CQyxExEBMGvEnkA32zqbNY
 
 \`🤖 𝐁𝐎𝐓 𝐍𝐀𝐌𝐄:\`🍑
 
