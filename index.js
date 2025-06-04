@@ -105,7 +105,6 @@ const app = express();
 const port = process.env.PORT || 9090;
   
   //=============================================
-  
   async function connectToWA() {
   console.log("Connecting to WhatsApp ⏳️...");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/')
@@ -136,13 +135,19 @@ const port = process.env.PORT || 9090;
   });
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
-    
+  
   let up = `
+  ╔═════⟪✦⟫═════╗ 
+ *✨𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎✨*
+  *𝗞ą𝗂𝗌𝖾𝗇-𝗠𝗗』 ʙᴏᴛ* 
+  ╚═════⟪✦⟫═════╝
+
 *╭━━━〔🍓𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗨𝗦〕━━━✦*
 *┃✅ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 : ᴀᴄᴛɪᴠᴇ*
 *┃👀 𝐎𝐍𝐋𝐈𝐍𝐄      : ${online}*
 *┃👻 𝐏𝐑𝐄𝐅𝐈𝐗        : ${prefix}*
 *┃🔮 𝐌𝐎𝐃𝐄        : ${mode}*
+*┃🍉 𝐒𝐓𝐀𝐓𝐔𝐒       : ${status}*
 *┃🌩️ 𝐕𝐄𝐑𝐒𝐈𝐎𝐍      : 𝟏.𝟎.𝟎*
  ╰━━━━━━━━━━━━━━━━━━╯
 
@@ -803,7 +808,7 @@ if (!isReact && config.CUSTOM_REACT === 'true') {
             return status;
         };
     conn.serializeM = mek => sms(conn, mek, store);
-  }
+}
   
   app.get("/", (req, res) => {
   res.send("KAISEN MD STARTED ✅");
