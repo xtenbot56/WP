@@ -5,19 +5,19 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 module.exports = {
-SESSION_ID: process.env.SESSION_ID || "",
+SESSION_ID: process.env.SESSION_ID || "KAISEN~21BEzCjL#AeYsCdB6OtvY7jr6ttjqNrz3XirmKZujN9EDORByNP8",
 // add your Session Id 
 AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "false",
 // make true or false status auto seen
 AUTO_STATUS_REACT: process.env.AUTO_STATUS_REACT || "false",
 // make true if you want auto reply on status 
-AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS JUST NOW KAISEN 👻*",
+AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS JUST NOW HUSSAIN 👻*",
 // set the auto reply massage on status reply  
 PREFIX: process.env.PREFIX || ".",
 // add your prifix for bot   
-BOT_NAME: process.env.BOT_NAME || "KAISEN",
+BOT_NAME: process.env.BOT_NAME || "𝐇𝐔𝐒𝐒𝐀𝐈𝐍ᯓ ᡣ𐭩🎀",
 // add bot namw here for menu
-STICKER_NAME: process.env.STICKER_NAME || "KAISEN",
+STICKER_NAME: process.env.STICKER_NAME || "HUSSAIN",
 // type sticker pack name 
 CUSTOM_REACT: process.env.CUSTOM_REACT || "false",
 // make this true for custum emoji react    
@@ -25,9 +25,9 @@ CUSTOM_REACT_EMOJIS: process.env.CUSTOM_REACT_EMOJIS || "💝,💖,💗,❤️�
 // chose custom react emojis by yourself 
 DELETE_LINKS: process.env.DELETE_LINKS || "false",
 // automatic delete links witho remove member 
-OWNER_NUMBER: process.env.OWNER_NUMBER || "917003816486",
+OWNER_NUMBER: process.env.OWNER_NUMBER || "8801965142856",
 // add your bot owner number
-OWNER_NAME: process.env.OWNER_NAME || "KAISEN",
+OWNER_NAME: process.env.OWNER_NAME || "𝐇𝐔𝐒𝐒𝐀𝐈𝐍ᯓ ᡣ𐭩",
 // add bot owner name 
 ADMIN_STATUS: process.env.ADMIN_STATUS || "false",
 // make true to know who dismiss or promoted a member in group
@@ -35,9 +35,9 @@ ALWAYS_ONLINE: process.env.ALWAYS_ONLINE || "false",
 // maks true for always online 
 MENTION_REPLY: process.env.MENTION_REPLY || "false",
 // maks true for always online 
-DESCRIPTION: process.env.DESCRIPTION || "*© ᴘσωєʀє∂ ву 𝖐𝚊𝚒𝚜𝖊𝖓 𝙼ԃ⎯꯭̽💀*",
+DESCRIPTION: process.env.DESCRIPTION || "*© ᴘσωєʀє∂ ву 𝕳𝖚𝖘𝖘𝖆𝖎𝖓 𝙼ԃ⎯꯭̽💀*",
 // add bot owner name    
-ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/j7fo2x.jpg",
+ALIVE_IMG: process.env.ALIVE_IMG || "https://i.imgur.com/wZkdvq7.jpeg",
 // add img for alive msg
 LIVE_MSG: process.env.LIVE_MSG || "> HEY 👋 IM ALIVE NOW*⚡",
 // add alive msg here 
