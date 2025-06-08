@@ -63,7 +63,7 @@ cmd({//
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '',
-                    newsletterName: '𝖐𝚊𝚒𝚜𝖊𝖓 𝙼ԃ⎯꯭̽💀  𝐀𝐈 🤖',
+                    newsletterName: '𝕳𝖚𝖘𝖘𝖆𝖎𝖓 𝙼ԃ⎯꯭̽💀  𝐀𝐈 🤖',
                     serverMessageId: 143
                 }
             }
