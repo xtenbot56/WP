@@ -23,13 +23,13 @@ cmd({
         const runtimeHours = Math.floor(runtimeMilliseconds / (1000 * 60 * 60));
 
         const formattedInfo = `
-🌟 *𝗸𝗮𝗶𝘀𝗲𝗻 𝗺𝗱 STATUS* 🌟
+🌟 *HUSSAIN BOT STATUS* 🌟
 Hey 👋🏻 ${pushname}
 🕒 *Time*: ${currentTime}
 📅 *Date*: ${currentDate}
 ⏳ *Uptime*: ${runtimeHours} hours, ${runtimeMinutes} minutes, ${runtimeSeconds} seconds
 
-*🤖sᴛᴀᴛᴜs*: *𝖐𝖆𝖎𝖘𝖊𝖓-ᴍᴅ ᴀʟɪᴠᴇ ᴀɴᴅ ʀᴇᴀᴅʏ*
+*🤖sᴛᴀᴛᴜs*: *𝙷𝚄𝚂𝚂𝙰𝙸𝙽 ᴍᴅ ᴀʟɪᴠᴇ ᴀɴᴅ ʀᴇᴀᴅʏ*
 
 *🤍ᴍᴀᴅᴇ ᴡɪᴛʜ ʟᴏᴠᴇ*
         `.trim();
