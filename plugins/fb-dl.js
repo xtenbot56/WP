@@ -55,7 +55,7 @@ cmd({
       caption: `*ƙαιʂҽɳ-ɱԃ 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃*\n\n` +
         `🔖 *TITLE*: ${title}\n` +
         `📏 *QUALITY*: ${downloads.find(d => d.quality === "HD") ? "HD" : "SD"}\n\n` +
-        `> *© ᴘσωєʀє∂ ву 𝖐𝚊𝚒𝚜𝖊𝖓 𝙼ԃ⎯꯭̽💀*`,
+        `> *© ᴘσωєʀє∂ ву 𝐇𝐔𝐒𝐒𝐀𝐈𝐍ᯓ ᡣ𐭩⎯꯭̽💀*`,
       contextInfo: {
         mentionedJid: [m.sender],
         forwardingScore: 999,
